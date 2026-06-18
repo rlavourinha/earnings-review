@@ -8,9 +8,12 @@
   "moeda": "R$ mi",
   "receita_nota": "receita operacional líquida",
   "margem_base": "a receita líquida",
-  "_nota_fonte": "Construído a partir do RELEASE/APRESENTAÇÃO DE RESULTADOS 1T26 da Telefônica Brasil (documento primário do RI — a planilha de séries históricas do RI não pôde ser baixada daqui, bloqueio de bot). O release traz o trimestre corrente + variação YoY; os valores de 1T25 foram derivados das taxas de crescimento informadas no próprio release (a DRE completa do comparativo está nas Demonstrações Financeiras). Série limitada a 1T25–1T26; para o histórico longo, usar a planilha do RI. Leitura qualitativa: rascunho gerado no processamento — revisar antes de circular.",
+  "_nota_fonte": "Série 1T25–1T26 montada de FONTES PRIMÁRIAS da Telefônica Brasil na SEC EDGAR (a planilha de séries históricas do RI não pôde ser baixada daqui — bloqueio de bot). 1T26 do release de resultados (6-K vivpr1q26); 3T25/4T25 do release (receita exata; EBITDA = receita × margem EBITDA reportada); 2T25 da DRE consolidada de 3 meses do ITR (6-K vivfs2q25), com EBITDA = EBIT + D&A; 1T25 obtido por reconciliação (6M25 − 2T25), batendo com a derivação pelas taxas YoY do release 1T26. result_fin não plotado (vazio em 3T25/4T25). Leitura qualitativa: rascunho gerado no processamento — revisar antes de circular.",
   "quarters": [
-    {"periodo": "1T25", "ref": "2025-03-31", "financ": {"receita_liq": 14391.1, "ebitda": 5701.8, "margem_ebitda": 39.7, "lucro_liquido": 1058.0, "result_fin": -568.7}},
+    {"periodo": "1T25", "ref": "2025-03-31", "financ": {"receita_liq": 14390.3, "ebitda": 5699.8, "margem_ebitda": 39.6, "lucro_liquido": 1058.2, "result_fin": -569.2}},
+    {"periodo": "2T25", "ref": "2025-06-30", "financ": {"receita_liq": 14645.1, "ebitda": 5933.5, "margem_ebitda": 40.5, "lucro_liquido": 1344.5, "result_fin": -689.1}},
+    {"periodo": "3T25", "ref": "2025-09-30", "financ": {"receita_liq": 14949.0, "ebitda": 6487.9, "margem_ebitda": 43.4, "lucro_liquido": 1888.4, "result_fin": null}},
+    {"periodo": "4T25", "ref": "2025-12-31", "financ": {"receita_liq": 15611.0, "ebitda": 6697.1, "margem_ebitda": 42.9, "lucro_liquido": 1876.9, "result_fin": null}},
     {"periodo": "1T26", "ref": "2026-03-31", "financ": {"receita_liq": 15457.0, "ebitda": 6209.3, "margem_ebitda": 40.2, "lucro_liquido": 1261.1, "result_fin": -720.0}}
   ],
   "operacional": [
