@@ -19,7 +19,14 @@ make publish               # regenera docs/index.html (publicado via GitHub Page
 ```
 
 **Publicação:** GitHub Pages servindo `docs/` na branch `main` (deploy from branch).
-Para atualizar o site: `make publish && git add docs/index.html && git commit && git push`.
+Para atualizar o site (no Windows não há `make` — use o copy direto):
+
+```bash
+python build.py
+cp output/earnings_review.html docs/index.html   # Windows: copy output\earnings_review.html docs\index.html
+git add docs/index.html && git commit -m "atualiza dashboard" && git push
+```
+
 (Não usa GitHub Actions: o token de push não tem o escopo `workflow`. Se quiser CI,
 conceda o escopo `workflow` e mova o build para `.github/workflows/`.)
 
