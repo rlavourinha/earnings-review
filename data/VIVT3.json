@@ -1,0 +1,40 @@
+{
+  "ticker": "VIVT3",
+  "nome": "Vivo (Telefônica Brasil)",
+  "setor": "Telecom — móvel, fibra & serviços digitais",
+  "ref": "1T26",
+  "ref_data": "2026-03-31",
+  "data_divulgacao": "2026-05-11",
+  "moeda": "R$ mi",
+  "receita_nota": "receita operacional líquida",
+  "margem_base": "a receita líquida",
+  "_nota_fonte": "Construído a partir do RELEASE/APRESENTAÇÃO DE RESULTADOS 1T26 da Telefônica Brasil (documento primário do RI — a planilha de séries históricas do RI não pôde ser baixada daqui, bloqueio de bot). O release traz o trimestre corrente + variação YoY; os valores de 1T25 foram derivados das taxas de crescimento informadas no próprio release (a DRE completa do comparativo está nas Demonstrações Financeiras). Série limitada a 1T25–1T26; para o histórico longo, usar a planilha do RI. Leitura qualitativa: rascunho gerado no processamento — revisar antes de circular.",
+  "quarters": [
+    {"periodo": "1T25", "ref": "2025-03-31", "financ": {"receita_liq": 14391.1, "ebitda": 5701.8, "margem_ebitda": 39.7, "lucro_liquido": 1058.0, "result_fin": -568.7}},
+    {"periodo": "1T26", "ref": "2026-03-31", "financ": {"receita_liq": 15457.0, "ebitda": 6209.3, "margem_ebitda": 40.2, "lucro_liquido": 1261.1, "result_fin": -720.0}}
+  ],
+  "operacional": [
+    {"label": "Acessos totais", "valor": "117,4", "unidade": "mi", "yoy": 1.1, "qoq": null, "nota": "recorde de base de clientes"},
+    {"label": "Acessos móveis", "valor": "103,7", "unidade": "mi", "yoy": 1.3, "qoq": null, "nota": "5G em 905 municípios (71% da população)"},
+    {"label": "Pós-pago (ex-M2M)", "valor": "51,6", "unidade": "mi", "yoy": 7.2, "qoq": null, "nota": "ARPU R$ 52,6 · churn 1,0% (mínimo histórico)"},
+    {"label": "FTTH — casas conectadas", "valor": "8,0", "unidade": "mi", "yoy": 11.5, "qoq": null, "nota": "take-up 25,4% (+1,2 p.p.); ARPU R$ 87,7"},
+    {"label": "Receita de serviço móvel (MSR)", "valor": "+6,6%", "unidade": "YoY", "yoy": null, "qoq": null, "nota": "pós-pago +7,8%; pré-pago já quase estável (−1,0%)"},
+    {"label": "Dívida líq./EBITDA", "valor": "0,4x", "unidade": "", "yoy": null, "qoq": null, "nota": "de 0,5x em 1T25; caixa líquido R$ 4,5 bi (ex-IFRS 16)"}
+  ],
+  "trends": [
+    {"tom": "pos", "titulo": "Base de clientes recorde, com pós-pago forte", "texto": "117,4 mi de acessos (recorde, +1,1% YoY). O pós-pago ex-M2M cresce +7,2% a 51,6 mi, com ARPU de R$ 52,6 e churn em mínimo histórico de 1,0%. A escada de migração (pré → controle → pós) e o mix melhor sustentam a monetização."},
+    {"tom": "pos", "titulo": "Fibra (FTTH) como motor estrutural", "texto": "8,0 mi de casas conectadas (+11,5% YoY) sobre 31,5 mi passadas (+6,2%), elevando o take-up a 25,4% (+1,2 p.p.). A convergência Vivo Total já é 44,7% da base FTTH (+7,1 p.p. YoY) — alavanca clara de crescimento e retenção."},
+    {"tom": "pos", "titulo": "Margem EBITDA em expansão: 40,2%", "texto": "EBITDA +8,9% YoY a R$ 6,21 bi, com margem +0,5 p.p. Custos comerciais e de infraestrutura crescendo abaixo da inflação pelo 5º trimestre seguido — disciplina de custos somada a mix de receita melhor."},
+    {"tom": "pos", "titulo": "Lucro +19,2% YoY (R$ 1,26 bi)", "texto": "Maior alta de lucro desde o 1T24, puxada por um EBIT +16,9% YoY. Crescimento de negócio se traduzindo em última linha."},
+    {"tom": "neg", "titulo": "Resultado financeiro mais pesado: −R$ 720 mi", "texto": "Despesa financeira +26,6% YoY, reflexo da aquisição da FiBrasil (mais dívida e consolidação da 3ª emissão de debêntures) e de maiores passivos de arrendamento. Ainda assim, a dívida líq./EBITDA caiu para 0,4x e a companhia tem posição de caixa líquido."},
+    {"tom": "pos", "titulo": "Retorno ao acionista robusto: ≥100% do lucro", "texto": "Política de distribuir ≥100% do lucro no período 2024–2026: R$ 6,99 bi já comprometidos (+9,6% vs FY2025), novo programa de recompra de até R$ 1 bi (fev/26) e redução de capital de R$ 4 bi. O balanço forte (caixa líquido, 0,4x) banca a remuneração."}
+  ],
+  "veredito": {
+    "tom": "positivo",
+    "resumo": "Trimestre sólido: base de clientes recorde, pós-pago e fibra crescendo com rentabilidade (margem EBITDA 40,2%) e lucro +19,2% YoY. A consolidação da FiBrasil pesa no resultado financeiro, mas a alavancagem segue baixa (0,4x) e a política de remunerar ≥100% do lucro reforça a tese de dividendos."
+  },
+  "fontes": [
+    {"label": "Apresentação de Resultados 1T26 — Telefônica Brasil RI", "url": "https://api.mziq.com/mzfilemanager/v2/d/24165f81-24d6-4648-bf9f-66712905d5a2/10197118-fa36-7b1a-0863-a2d95945ea83?origin=2"},
+    {"label": "Telefônica Brasil RI", "url": "https://ri.telefonica.com.br/"}
+  ]
+}

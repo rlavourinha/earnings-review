@@ -1,0 +1,272 @@
+<!doctype html><html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Earnings Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B0C0F; --surface:#14161C; --surface2:#1B1E26; --border:#272B34;
+  --ink:#ECEEF2; --muted:#969FAD; --faint:#5A636F;
+  --up:#3FC08A; --down:#F0664B; --accent:#4FC3E0; --accent2:#7C8CF8;
+  --glow:rgba(79,195,224,.14);
+}
+*{box-sizing:border-box}
+body{margin:0;background:
+   radial-gradient(900px 380px at 78% -8%, var(--glow), transparent 70%),
+   var(--bg);
+  color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin:0 auto;padding:40px 28px 70px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+code{font-family:'JetBrains Mono',monospace;font-size:.9em;color:var(--accent)}
+
+/* header */
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;
+  padding-bottom:22px;border-bottom:1px solid var(--border);margin-bottom:28px}
+.brand{font:600 11px/1 'JetBrains Mono',monospace;letter-spacing:.34em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(28px,4.6vw,44px);line-height:1.04;letter-spacing:-.015em;margin:0}
+h1 em{font-style:normal;color:var(--accent)}
+.sub{color:var(--muted);font-size:13.5px;margin-top:11px;display:flex;flex-wrap:wrap;gap:7px 16px;align-items:center}
+.sub b{color:var(--ink);font-weight:600}
+.sub .disc{display:inline-flex;align-items:center;gap:7px;color:var(--ink)}
+.sub .disc::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px var(--glow)}
+.sub .disc b{color:var(--accent)}
+.head-right{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.ver{font:600 10.5px 'JetBrains Mono',monospace;letter-spacing:.1em;color:var(--muted);
+  border:1px solid var(--border);border-radius:999px;padding:6px 13px;background:var(--surface)}
+.ver b{color:var(--accent);font-weight:600}
+
+/* seletor */
+.picker{display:flex;align-items:center;gap:12px}
+.picker label{font:600 10px 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.sel{position:relative}
+select{appearance:none;background:var(--surface);color:var(--ink);border:1px solid var(--border);border-radius:8px;
+  padding:11px 38px 11px 15px;font:600 15px 'JetBrains Mono',monospace;letter-spacing:.02em;cursor:pointer;min-width:190px}
+select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.sel::after{content:"▾";position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--accent);pointer-events:none}
+
+/* veredito */
+.verdict{display:flex;gap:16px;align-items:flex-start;margin:0 0 26px;padding:18px 22px;border-radius:12px;
+  background:linear-gradient(180deg,var(--surface),var(--surface2));border:1px solid var(--border);border-left:4px solid var(--faint)}
+.verdict.t-positivo{border-left-color:var(--up)} .verdict.t-negativo{border-left-color:var(--down)} .verdict.t-misto{border-left-color:var(--accent2)}
+.verdict .badge{font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;
+  padding:6px 11px;border-radius:6px;white-space:nowrap;background:rgba(90,99,111,.18);color:var(--muted)}
+.verdict.t-positivo .badge{background:rgba(63,192,138,.16);color:var(--up)}
+.verdict.t-negativo .badge{background:rgba(240,102,75,.16);color:var(--down)}
+.verdict.t-misto .badge{background:rgba(124,140,248,.16);color:var(--accent2)}
+.verdict p{margin:0;font-size:15px;color:var(--ink);line-height:1.55}
+
+/* kpis */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:0 0 26px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 19px}
+.kpi .lbl{font:600 10px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:11px}
+.kpi .val{font:600 25px 'JetBrains Mono',monospace;letter-spacing:-.01em;color:var(--ink)}
+.kpi .foot{font-size:11.5px;color:var(--muted);margin-top:7px}
+.deltas{display:flex;gap:8px;margin-top:11px;flex-wrap:wrap}
+.dl{display:inline-flex;align-items:center;gap:5px}
+.dl .k{font:600 8.5px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.chip{font:600 11.5px 'JetBrains Mono',monospace;padding:2px 7px;border-radius:5px;white-space:nowrap}
+.chip.up{color:var(--up);background:rgba(63,192,138,.13)}
+.chip.down{color:var(--down);background:rgba(240,102,75,.13)}
+.chip.flat{color:var(--muted);background:rgba(90,99,111,.14)}
+
+/* gráficos (série completa) */
+.charts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0 0 26px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.card-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:15px 18px 4px}
+.card-h h2{font:600 14px 'Space Grotesk',sans-serif;margin:0;letter-spacing:-.01em}
+.card-h .m{font:500 10.5px 'JetBrains Mono',monospace;color:var(--faint);letter-spacing:.02em}
+.chart-box{padding:6px 14px 14px}
+.chart-box svg{width:100%;height:auto;display:block}
+.ax{fill:var(--faint);font-family:'JetBrains Mono',monospace;font-size:9px}
+.gl{stroke:var(--border);stroke-width:1}
+.last-lbl{fill:var(--ink);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600}
+
+/* colunas leitura/operacional */
+.cols{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;margin:0 0 26px;align-items:start}
+.read{padding:4px 0 8px}
+.read .card-h{padding:16px 20px 14px;border-bottom:1px solid var(--border)}
+.trend{padding:15px 20px;border-bottom:1px solid rgba(39,43,52,.6)} .trend:last-child{border-bottom:0}
+.trend-h{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--faint);flex:none}
+.trend.t-pos .dot{background:var(--up)} .trend.t-neg .dot{background:var(--down)} .trend.t-neu .dot{background:var(--accent)}
+.trend-h .t{font:600 13.5px 'Inter',sans-serif;color:var(--ink)}
+.trend p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.55}
+.oper .card-h{padding:16px 20px 14px;border-bottom:1px solid var(--border)}
+.ocell{padding:15px 18px;border-bottom:1px solid rgba(39,43,52,.6)} .ocell:last-child{border-bottom:0}
+.ocell .ol{font:600 10px 'Inter',sans-serif;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);margin-bottom:8px}
+.ocell .ov{font:600 18px 'JetBrains Mono',monospace;color:var(--ink)}
+.ocell .ov .un{font-size:11px;color:var(--muted);margin-left:5px;font-weight:500}
+.ocell .od{display:flex;gap:9px;margin-top:8px}
+.ocell .on{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.45}
+
+/* método + rodapé */
+.method{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:22px 24px;background:var(--surface);
+  border:1px solid var(--border);border-radius:12px;margin:0 0 14px}
+.method h3{font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.method p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.55} .method b{color:var(--ink);font-weight:500}
+.srcs{font:500 11.5px 'JetBrains Mono',monospace;color:var(--faint);margin:0 0 18px}
+.srcs a{color:var(--accent)}
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;color:var(--faint);
+  font:500 11px 'JetBrains Mono',monospace;border-top:1px solid var(--border);padding-top:16px}
+.empty{padding:24px;text-align:center;color:var(--faint);font-size:13px}
+
+@media (max-width:900px){
+  .kpis{grid-template-columns:repeat(2,1fr)} .charts{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr} .method{grid-template-columns:1fr}
+  header{align-items:flex-start} .head-right{align-items:flex-start}
+}
+</style></head>
+<body><div class="wrap">
+  <header>
+    <div>
+      <div class="brand">Earnings Review</div>
+      <h1 id="h-co">—</h1>
+      <div class="sub" id="h-sub"></div>
+    </div>
+    <div class="head-right">
+      <span class="ver">v<b>1.0</b> · 17/06/2026</span>
+      <div class="picker"><label for="co">Empresa</label><div class="sel"><select id="co"><option value="RENT3">RENT3 · Localiza</option><option value="VIVT3">VIVT3 · Vivo (Telefônica Brasil)</option></select></div></div>
+    </div>
+  </header>
+  
+  <div class="verdict" id="verdict"></div>
+  <section class="kpis" id="kpis"></section>
+  <section class="charts" id="charts"></section>
+  <div class="cols">
+    <section class="card read"><div class="card-h"><h2>Leitura do trimestre</h2><span class="m">trends operacionais</span></div>
+      <div id="trends"></div></section>
+    <section class="card oper"><div class="card-h"><h2>Operacional</h2><span class="m">YoY · QoQ</span></div>
+      <div id="oper"></div></section>
+  </div>
+  <p class="srcs" id="srcs"></p>
+  <section class="method">
+    <div><h3>O que é</h3><p>Acompanhamento <b>trimestral</b> do resultado da companhia: série financeira de longo prazo + <b>leitura qualitativa</b> dos trends operacionais que merecem atenção.</p></div>
+    <div><h3>Fontes</h3><p><b>Só fontes primárias</b>: o <b>release de resultados</b> e o <b>ITR/DFP</b> da companhia. Sem notícia/sell-side — pra não enviesar a leitura. Cada KPI é conferível na fonte primária. Margem EBITDA sobre a receita de aluguel.</p></div>
+    <div><h3>Método</h3><p>Juízo próprio a partir do dado primário; YoY/QoQ derivados da série; gráficos mostram o <b>histórico completo</b>, sem janela. A leitura é um <b>rascunho gerado no processamento</b> — revisar antes de circular.</p></div>
+  </section>
+  <footer><span>earnings-review · dashboard standalone</span><span>gerado em 17/06/2026</span></footer>
+</div>
+<script>(()=>{
+  const DATA = {"RENT3": {"ticker": "RENT3", "nome": "Localiza", "setor": "Locação & gestão de frotas", "ref": "1T26", "ref_data": "2026-03-31", "data_divulgacao": "2026-05-07", "divulgacao_nota": "após o fechamento", "moeda": "R$ mi", "receita_nota": "total (aluguel + venda de ativos)", "margem_base": "receita de aluguel", "_nota_fonte": "Série financeira (1T10–1T26) e KPIs operacionais extraídos do release/planilha de RI do 1T26 (margem EBITDA = EBITDA / receita líquida de aluguel). Leitura qualitativa: rascunho gerado no processamento — revisar antes de circular.", "quarters": [{"periodo": "1T10", "financ": {"receita_liq": 552.8, "receita_aluguel": 258.3, "ebitda": 129.6, "lucro_liquido": 48.8, "result_fin": -28.2, "margem_ebitda": 50.2}, "ref": "2010-03-31"}, {"periodo": "2T10", "financ": {"receita_liq": 563.4, "receita_aluguel": 272.8, "ebitda": 144.0, "lucro_liquido": 57.5, "result_fin": -29.2, "margem_ebitda": 52.8}, "ref": "2010-06-30"}, {"periodo": "3T10", "financ": {"receita_liq": 658.8, "receita_aluguel": 304.6, "ebitda": 166.8, "lucro_liquido": 74.9, "result_fin": -31.4, "margem_ebitda": 54.8}, "ref": "2010-09-30"}, {"periodo": "4T10", "financ": {"receita_liq": 722.2, "receita_aluguel": 339.9, "ebitda": 175.1, "lucro_liquido": 69.4, "result_fin": -41.3, "margem_ebitda": 51.5}, "ref": "2010-12-31"}, {"periodo": "1T11", "financ": {"receita_liq": 681.5, "receita_aluguel": 340.8, "ebitda": 172.9, "lucro_liquido": 63.6, "result_fin": -42.8, "margem_ebitda": 50.7}, "ref": "2011-03-31"}, {"periodo": "2T11", "financ": {"receita_liq": 706.4, "receita_aluguel": 353.7, "ebitda": 187.9, "lucro_liquido": 74.0, "result_fin": -45.2, "margem_ebitda": 53.1}, "ref": "2011-06-30"}, {"periodo": "3T11", "financ": {"receita_liq": 757.5, "receita_aluguel": 362.9, "ebitda": 208.6, "lucro_liquido": 75.3, "result_fin": -49.8, "margem_ebitda": 57.5}, "ref": "2011-09-30"}, {"periodo": "4T11", "financ": {"receita_liq": 772.7, "receita_aluguel": 392.5, "ebitda": 210.3, "lucro_liquido": 78.7, "result_fin": -41.2, "margem_ebitda": 53.6}, "ref": "2011-12-31"}, {"periodo": "1T12", "financ": {"receita_liq": 774.7, "receita_aluguel": 401.4, "ebitda": 200.2, "lucro_liquido": 72.7, "result_fin": -43.6, "margem_ebitda": 49.9}, "ref": "2012-03-31"}, {"periodo": "2T12", "financ": {"receita_liq": 789.6, "receita_aluguel": 400.3, "ebitda": 195.8, "lucro_liquido": 10.7, "result_fin": -34.1, "margem_ebitda": 48.9}, "ref": "2012-06-30"}, {"periodo": "3T12", "financ": {"receita_liq": 807.0, "receita_aluguel": 412.3, "ebitda": 204.2, "lucro_liquido": 71.4, "result_fin": -30.4, "margem_ebitda": 49.5}, "ref": "2012-09-30"}, {"periodo": "4T12", "financ": {"receita_liq": 795.5, "receita_aluguel": 432.9, "ebitda": 212.0, "lucro_liquido": 86.1, "result_fin": -30.6, "margem_ebitda": 49.0}, "ref": "2012-12-31"}, {"periodo": "1T13", "financ": {"receita_liq": 793.3, "receita_aluguel": 429.5, "ebitda": 196.9, "lucro_liquido": 88.8, "result_fin": -23.0, "margem_ebitda": 45.8}, "ref": "2013-03-31"}, {"periodo": "2T13", "financ": {"receita_liq": 813.1, "receita_aluguel": 432.4, "ebitda": 200.8, "lucro_liquido": 103.4, "result_fin": -21.1, "margem_ebitda": 46.4}, "ref": "2013-06-30"}, {"periodo": "3T13", "financ": {"receita_liq": 935.9, "receita_aluguel": 438.6, "ebitda": 208.5, "lucro_liquido": 102.1, "result_fin": -28.1, "margem_ebitda": 47.5}, "ref": "2013-09-30"}, {"periodo": "4T13", "financ": {"receita_liq": 963.9, "receita_aluguel": 458.3, "ebitda": 211.0, "lucro_liquido": 90.0, "result_fin": -38.4, "margem_ebitda": 46.0}, "ref": "2013-12-31"}, {"periodo": "1T14", "financ": {"receita_liq": 945.1, "receita_aluguel": 459.3, "ebitda": 216.9, "lucro_liquido": 105.8, "result_fin": -34.3, "margem_ebitda": 47.2}, "ref": "2014-03-31"}, {"periodo": "2T14", "financ": {"receita_liq": 904.6, "receita_aluguel": 461.0, "ebitda": 209.2, "lucro_liquido": 100.6, "result_fin": -42.6, "margem_ebitda": 45.4}, "ref": "2014-06-30"}, {"periodo": "3T14", "financ": {"receita_liq": 1007.4, "receita_aluguel": 471.5, "ebitda": 218.1, "lucro_liquido": 101.9, "result_fin": -42.4, "margem_ebitda": 46.3}, "ref": "2014-09-30"}, {"periodo": "4T14", "financ": {"receita_liq": 1035.2, "receita_aluguel": 482.2, "ebitda": 205.4, "lucro_liquido": 102.2, "result_fin": -31.6, "margem_ebitda": 42.6}, "ref": "2014-12-31"}, {"periodo": "1T15", "financ": {"receita_liq": 1007.0, "receita_aluguel": 463.1, "ebitda": 196.9, "lucro_liquido": 100.3, "result_fin": -48.0, "margem_ebitda": 42.5}, "ref": "2015-03-31"}, {"periodo": "2T15", "financ": {"receita_liq": 949.5, "receita_aluguel": 450.3, "ebitda": 185.8, "lucro_liquido": 93.4, "result_fin": -51.5, "margem_ebitda": 41.3}, "ref": "2015-06-30"}, {"periodo": "3T15", "financ": {"receita_liq": 978.0, "receita_aluguel": 475.5, "ebitda": 200.9, "lucro_liquido": 102.9, "result_fin": -59.7, "margem_ebitda": 42.3}, "ref": "2015-09-30"}, {"periodo": "4T15", "financ": {"receita_liq": 993.5, "receita_aluguel": 494.3, "ebitda": 201.9, "lucro_liquido": 105.9, "result_fin": -43.5, "margem_ebitda": 40.8}, "ref": "2015-12-31"}, {"periodo": "1T16", "financ": {"receita_liq": 1047.0, "receita_aluguel": 502.4, "ebitda": 221.4, "lucro_liquido": 103.0, "result_fin": -67.7, "margem_ebitda": 44.1}, "ref": "2016-03-31"}, {"periodo": "2T16", "financ": {"receita_liq": 963.1, "receita_aluguel": 491.4, "ebitda": 209.4, "lucro_liquido": 98.0, "result_fin": -49.5, "margem_ebitda": 42.6}, "ref": "2016-06-30"}, {"periodo": "3T16", "financ": {"receita_liq": 1123.2, "receita_aluguel": 530.3, "ebitda": 223.1, "lucro_liquido": 103.9, "result_fin": -53.7, "margem_ebitda": 42.1}, "ref": "2016-09-30"}, {"periodo": "4T16", "financ": {"receita_liq": 1306.0, "receita_aluguel": 572.7, "ebitda": 233.9, "lucro_liquido": 104.4, "result_fin": -72.7, "margem_ebitda": 40.8}, "ref": "2016-12-31"}, {"periodo": "1T17", "financ": {"receita_liq": 1339.6, "receita_aluguel": 581.1, "ebitda": 258.7, "lucro_liquido": 120.3, "result_fin": -74.8, "margem_ebitda": 44.5}, "ref": "2017-03-31"}, {"periodo": "2T17", "financ": {"receita_liq": 1345.7, "receita_aluguel": 577.9, "ebitda": 245.1, "lucro_liquido": 129.3, "result_fin": -67.2, "margem_ebitda": 42.4}, "ref": "2017-06-30"}, {"periodo": "3T17", "financ": {"receita_liq": 1563.4, "receita_aluguel": 665.0, "ebitda": 251.3, "lucro_liquido": 123.2, "result_fin": -79.4, "margem_ebitda": 37.8}, "ref": "2017-09-30"}, {"periodo": "4T17", "financ": {"receita_liq": 1809.6, "receita_aluguel": 783.1, "ebitda": 281.9, "lucro_liquido": 133.0, "result_fin": -93.6, "margem_ebitda": 36.0}, "ref": "2017-12-31"}, {"periodo": "1T18", "financ": {"receita_liq": 1822.7, "receita_aluguel": 802.2, "ebitda": 338.9, "lucro_liquido": 176.0, "result_fin": -88.9, "margem_ebitda": 42.2}, "ref": "2018-03-31"}, {"periodo": "2T18", "financ": {"receita_liq": 1740.2, "receita_aluguel": 769.3, "ebitda": 313.2, "lucro_liquido": 141.9, "result_fin": -88.7, "margem_ebitda": 40.7}, "ref": "2018-06-30"}, {"periodo": "3T18", "financ": {"receita_liq": 2073.2, "receita_aluguel": 859.0, "ebitda": 370.5, "lucro_liquido": 159.9, "result_fin": -83.8, "margem_ebitda": 43.1}, "ref": "2018-09-30"}, {"periodo": "4T18", "financ": {"receita_liq": 2259.8, "receita_aluguel": 954.8, "ebitda": 431.7, "lucro_liquido": 181.4, "result_fin": -107.5, "margem_ebitda": 45.2}, "ref": "2018-12-31"}, {"periodo": "1T19", "financ": {"receita_liq": 2447.7, "receita_aluguel": 987.6, "ebitda": 500.0, "lucro_liquido": 210.8, "result_fin": -105.2, "margem_ebitda": 50.6}, "ref": "2019-03-31"}, {"periodo": "2T19", "financ": {"receita_liq": 2381.2, "receita_aluguel": 996.6, "ebitda": 450.9, "lucro_liquido": 190.1, "result_fin": -97.9, "margem_ebitda": 45.2}, "ref": "2019-06-30"}, {"periodo": "3T19", "financ": {"receita_liq": 2671.1, "receita_aluguel": 1093.5, "ebitda": 489.0, "lucro_liquido": 204.7, "result_fin": -94.2, "margem_ebitda": 44.7}, "ref": "2019-09-30"}, {"periodo": "4T19", "financ": {"receita_liq": 2695.4, "receita_aluguel": 911.1, "ebitda": 589.3, "lucro_liquido": 228.4, "result_fin": -112.5, "margem_ebitda": 64.7}, "ref": "2019-12-31"}, {"periodo": "1T20", "financ": {"receita_liq": 2794.6, "receita_aluguel": 1149.1, "ebitda": 607.9, "lucro_liquido": 230.9, "result_fin": -127.6, "margem_ebitda": 52.9}, "ref": "2020-03-31"}, {"periodo": "2T20", "financ": {"receita_liq": 1570.1, "receita_aluguel": 741.3, "ebitda": 467.6, "lucro_liquido": 89.9, "result_fin": -127.3, "margem_ebitda": 63.1}, "ref": "2020-06-30"}, {"periodo": "3T20", "financ": {"receita_liq": 3067.6, "receita_aluguel": 1023.3, "ebitda": 519.6, "lucro_liquido": 325.5, "result_fin": -54.5, "margem_ebitda": 50.8}, "ref": "2020-09-30"}, {"periodo": "4T20", "financ": {"receita_liq": 2875.3, "receita_aluguel": 1284.8, "ebitda": 592.5, "lucro_liquido": 401.8, "result_fin": -65.0, "margem_ebitda": 46.1}, "ref": "2020-12-31"}, {"periodo": "1T21", "financ": {"receita_liq": 2797.1, "receita_aluguel": 1260.2, "ebitda": 598.7, "lucro_liquido": 482.3, "result_fin": -22.3, "margem_ebitda": 47.5}, "ref": "2021-03-31"}, {"periodo": "2T21", "financ": {"receita_liq": 2695.7, "receita_aluguel": 1226.7, "ebitda": 554.5, "lucro_liquido": 447.9, "result_fin": -45.9, "margem_ebitda": 45.2}, "ref": "2021-06-30"}, {"periodo": "3T21", "financ": {"receita_liq": 2772.2, "receita_aluguel": 1466.4, "ebitda": 944.3, "lucro_liquido": 671.4, "result_fin": -96.8, "margem_ebitda": 64.4}, "ref": "2021-09-30"}, {"periodo": "4T21", "financ": {"receita_liq": 2636.2, "receita_aluguel": 1640.0, "ebitda": 799.6, "lucro_liquido": 442.1, "result_fin": -156.0, "margem_ebitda": 48.8}, "ref": "2021-12-31"}, {"periodo": "1T22", "financ": {"receita_liq": 2711.6, "receita_aluguel": 1672.6, "ebitda": 978.3, "lucro_liquido": 517.4, "result_fin": -227.0, "margem_ebitda": 58.5}, "ref": "2022-03-31"}, {"periodo": "2T22", "financ": {"receita_liq": 3049.4, "receita_aluguel": 1699.9, "ebitda": 955.2, "lucro_liquido": 456.7, "result_fin": -266.3, "margem_ebitda": 56.2}, "ref": "2022-06-30"}, {"periodo": "3T22", "financ": {"receita_liq": 6136.9, "receita_aluguel": 3159.9, "ebitda": 1941.1, "lucro_liquido": 423.6, "result_fin": -869.3, "margem_ebitda": 61.4}, "ref": "2022-09-30"}, {"periodo": "4T22", "financ": {"receita_liq": 5885.5, "receita_aluguel": 3202.5, "ebitda": 1957.3, "lucro_liquido": 443.4, "result_fin": -748.0, "margem_ebitda": 61.1}, "ref": "2022-12-31"}, {"periodo": "1T23", "financ": {"receita_liq": 6825.8, "receita_aluguel": 3420.0, "ebitda": 2406.7, "lucro_liquido": 521.6, "result_fin": -1069.9, "margem_ebitda": 70.4}, "ref": "2023-03-31"}, {"periodo": "2T23", "financ": {"receita_liq": 6846.3, "receita_aluguel": 3562.4, "ebitda": 2378.6, "lucro_liquido": -88.8, "result_fin": -1097.3, "margem_ebitda": 66.8}, "ref": "2023-06-30"}, {"periodo": "3T23", "financ": {"receita_liq": 7322.0, "receita_aluguel": 3793.2, "ebitda": 2590.1, "lucro_liquido": 664.7, "result_fin": -882.8, "margem_ebitda": 68.3}, "ref": "2023-09-30"}, {"periodo": "4T23", "financ": {"receita_liq": 7908.5, "receita_aluguel": 4167.9, "ebitda": 2748.9, "lucro_liquido": 705.6, "result_fin": -974.3, "margem_ebitda": 66.0}, "ref": "2023-12-31"}, {"periodo": "1T24", "financ": {"receita_liq": 8686.4, "receita_aluguel": 4347.9, "ebitda": 2836.3, "lucro_liquido": 733.5, "result_fin": -984.6, "margem_ebitda": 65.2}, "ref": "2024-03-31"}, {"periodo": "2T24", "financ": {"receita_liq": 9049.1, "receita_aluguel": 4330.4, "ebitda": 2389.1, "lucro_liquido": -569.6, "result_fin": -942.8, "margem_ebitda": 55.2}, "ref": "2024-06-30"}, {"periodo": "3T24", "financ": {"receita_liq": 9683.4, "receita_aluguel": 4613.0, "ebitda": 3051.6, "lucro_liquido": 812.1, "result_fin": -1044.8, "margem_ebitda": 66.2}, "ref": "2024-09-30"}, {"periodo": "4T24", "financ": {"receita_liq": 9852.7, "receita_aluguel": 4790.7, "ebitda": 3193.8, "lucro_liquido": 837.3, "result_fin": -966.5, "margem_ebitda": 66.7}, "ref": "2024-12-31"}, {"periodo": "1T25", "financ": {"receita_liq": 10139.2, "receita_aluguel": 4836.1, "ebitda": 3220.2, "lucro_liquido": 842.4, "result_fin": -1069.7, "margem_ebitda": 66.6}, "ref": "2025-03-31"}, {"periodo": "2T25", "financ": {"receita_liq": 9900.1, "receita_aluguel": 4734.5, "ebitda": 3207.6, "lucro_liquido": -168.6, "result_fin": -1125.8, "margem_ebitda": 67.7}, "ref": "2025-06-30"}, {"periodo": "3T25", "financ": {"receita_liq": 10732.1, "receita_aluguel": 4893.6, "ebitda": 3375.0, "lucro_liquido": 258.1, "result_fin": -1220.0, "margem_ebitda": 69.0}, "ref": "2025-09-30"}, {"periodo": "4T25", "financ": {"receita_liq": 11010.2, "receita_aluguel": 5133.9, "ebitda": 3627.7, "lucro_liquido": 938.5, "result_fin": -1198.3, "margem_ebitda": 70.7}, "ref": "2025-12-31"}, {"periodo": "1T26", "financ": {"receita_liq": 12284.3, "receita_aluguel": 5143.7, "ebitda": 3899.5, "lucro_liquido": 1221.9, "result_fin": -1138.6, "margem_ebitda": 75.8}, "ref": "2026-03-31"}], "operacional": [{"label": "Frota total — fim do período", "valor": "645.854", "unidade": "carros", "yoy": 2.8, "qoq": -1.9, "nota": "idade média 14,6 m (−0,6 vs 1T25): frota mais nova"}, {"label": "Frota Aluguel de Carros", "valor": "339.112", "unidade": "carros", "yoy": 5.6, "qoq": -3.7, "nota": "core cresce; Gestão de Frotas estável (~303 mil)"}, {"label": "Tarifa média — Aluguel de Carros", "valor": "R$ 42,1", "unidade": "/ diária", "yoy": 9.1, "qoq": 0.5, "nota": "repasse de preço com frota estável"}, {"label": "Carros vendidos (Seminovos)", "valor": "95.876", "unidade": "carros", "yoy": 27.8, "qoq": 23.2, "nota": "giro alto sustenta renovação e receita"}, {"label": "Carros comprados", "valor": "83.543", "unidade": "carros", "yoy": 145.0, "qoq": -18.0, "nota": "renovação intensa após compras contidas em 1T25"}, {"label": "Frota Aluguel de Carros — México", "valor": "3.743", "unidade": "carros", "yoy": 88.1, "qoq": 34.6, "nota": "rampa de expansão internacional (base pequena)"}], "trends": [{"tom": "pos", "titulo": "Margem EBITDA recorde: 75,8%", "texto": "Expansão de ~9 p.p. YoY (66,6% → 75,8%), calculada sobre a receita líquida de aluguel. Reflete ganho de eficiência, tarifa em alta e diluição de custos fixos. É o destaque operacional do trimestre — e o ponto mais alto de toda a série desde 2010."}, {"tom": "pos", "titulo": "Lucro líquido salta +45% YoY, para R$ 1,22 bi", "texto": "Recuperação consistente após um ano volátil (o 2T25 chegou a registrar prejuízo de R$ 169 mi). Alavancagem operacional e contribuição de Seminovos puxam a última linha; +30% também na base sequencial."}, {"tom": "neu", "titulo": "Frota disciplinada: +2,8% YoY, estável no trimestre", "texto": "Crescimento priorizando rentabilidade sobre volume. A renovação acelerada deixou a idade média em 14,6 meses (vs 15,2). Aluguel de Carros avança +5,6% YoY; Gestão de Frotas anda de lado (~303 mil carros)."}, {"tom": "pos", "titulo": "Seminovos como motor de receita e renovação", "texto": "Receita de venda de carros de R$ 7,1 bi (+35% YoY) responde pela maior parte do crescimento do topo de linha. Foram 95,9 mil carros vendidos (+28% YoY), sustentando giro e renovação com preço médio resiliente."}, {"tom": "neg", "titulo": "Resultado financeiro ainda pesado: −R$ 1,14 bi", "texto": "O custo da dívida em patamar elevado consome parcela relevante do EBIT e é o principal limitador do lucro. Variável-chave a monitorar conforme evolui o ciclo de juros."}, {"tom": "pos", "titulo": "México em rampa", "texto": "Frota de Aluguel de Carros no país sobe +88% YoY (base ainda pequena, 3,7 mil carros), com abertura de lojas próprias e de Seminovos. Opcionalidade de crescimento de longo prazo fora do Brasil."}], "veredito": {"tom": "positivo", "resumo": "Trimestre forte e de qualidade: rentabilidade recorde (margem EBITDA de 75,8%), lucro +45% YoY e frota renovada com disciplina de capital. A ressalva fica no resultado financeiro ainda elevado, que segue consumindo parte relevante do resultado operacional."}, "fontes": [{"label": "Release de Resultados 1T26 — Localiza RI", "url": "https://ri.localiza.com/"}, {"label": "Formulário ITR 1T26 — CVM (RAD)", "url": "https://www.rad.cvm.gov.br/"}]}, "VIVT3": {"ticker": "VIVT3", "nome": "Vivo (Telefônica Brasil)", "setor": "Telecom — móvel, fibra & serviços digitais", "ref": "1T26", "ref_data": "2026-03-31", "data_divulgacao": "2026-05-11", "moeda": "R$ mi", "receita_nota": "receita operacional líquida", "margem_base": "a receita líquida", "_nota_fonte": "Construído a partir do RELEASE/APRESENTAÇÃO DE RESULTADOS 1T26 da Telefônica Brasil (documento primário do RI — a planilha de séries históricas do RI não pôde ser baixada daqui, bloqueio de bot). O release traz o trimestre corrente + variação YoY; os valores de 1T25 foram derivados das taxas de crescimento informadas no próprio release (a DRE completa do comparativo está nas Demonstrações Financeiras). Série limitada a 1T25–1T26; para o histórico longo, usar a planilha do RI. Leitura qualitativa: rascunho gerado no processamento — revisar antes de circular.", "quarters": [{"periodo": "1T25", "ref": "2025-03-31", "financ": {"receita_liq": 14391.1, "ebitda": 5701.8, "margem_ebitda": 39.7, "lucro_liquido": 1058.0, "result_fin": -568.7}}, {"periodo": "1T26", "ref": "2026-03-31", "financ": {"receita_liq": 15457.0, "ebitda": 6209.3, "margem_ebitda": 40.2, "lucro_liquido": 1261.1, "result_fin": -720.0}}], "operacional": [{"label": "Acessos totais", "valor": "117,4", "unidade": "mi", "yoy": 1.1, "qoq": null, "nota": "recorde de base de clientes"}, {"label": "Acessos móveis", "valor": "103,7", "unidade": "mi", "yoy": 1.3, "qoq": null, "nota": "5G em 905 municípios (71% da população)"}, {"label": "Pós-pago (ex-M2M)", "valor": "51,6", "unidade": "mi", "yoy": 7.2, "qoq": null, "nota": "ARPU R$ 52,6 · churn 1,0% (mínimo histórico)"}, {"label": "FTTH — casas conectadas", "valor": "8,0", "unidade": "mi", "yoy": 11.5, "qoq": null, "nota": "take-up 25,4% (+1,2 p.p.); ARPU R$ 87,7"}, {"label": "Receita de serviço móvel (MSR)", "valor": "+6,6%", "unidade": "YoY", "yoy": null, "qoq": null, "nota": "pós-pago +7,8%; pré-pago já quase estável (−1,0%)"}, {"label": "Dívida líq./EBITDA", "valor": "0,4x", "unidade": "", "yoy": null, "qoq": null, "nota": "de 0,5x em 1T25; caixa líquido R$ 4,5 bi (ex-IFRS 16)"}], "trends": [{"tom": "pos", "titulo": "Base de clientes recorde, com pós-pago forte", "texto": "117,4 mi de acessos (recorde, +1,1% YoY). O pós-pago ex-M2M cresce +7,2% a 51,6 mi, com ARPU de R$ 52,6 e churn em mínimo histórico de 1,0%. A escada de migração (pré → controle → pós) e o mix melhor sustentam a monetização."}, {"tom": "pos", "titulo": "Fibra (FTTH) como motor estrutural", "texto": "8,0 mi de casas conectadas (+11,5% YoY) sobre 31,5 mi passadas (+6,2%), elevando o take-up a 25,4% (+1,2 p.p.). A convergência Vivo Total já é 44,7% da base FTTH (+7,1 p.p. YoY) — alavanca clara de crescimento e retenção."}, {"tom": "pos", "titulo": "Margem EBITDA em expansão: 40,2%", "texto": "EBITDA +8,9% YoY a R$ 6,21 bi, com margem +0,5 p.p. Custos comerciais e de infraestrutura crescendo abaixo da inflação pelo 5º trimestre seguido — disciplina de custos somada a mix de receita melhor."}, {"tom": "pos", "titulo": "Lucro +19,2% YoY (R$ 1,26 bi)", "texto": "Maior alta de lucro desde o 1T24, puxada por um EBIT +16,9% YoY. Crescimento de negócio se traduzindo em última linha."}, {"tom": "neg", "titulo": "Resultado financeiro mais pesado: −R$ 720 mi", "texto": "Despesa financeira +26,6% YoY, reflexo da aquisição da FiBrasil (mais dívida e consolidação da 3ª emissão de debêntures) e de maiores passivos de arrendamento. Ainda assim, a dívida líq./EBITDA caiu para 0,4x e a companhia tem posição de caixa líquido."}, {"tom": "pos", "titulo": "Retorno ao acionista robusto: ≥100% do lucro", "texto": "Política de distribuir ≥100% do lucro no período 2024–2026: R$ 6,99 bi já comprometidos (+9,6% vs FY2025), novo programa de recompra de até R$ 1 bi (fev/26) e redução de capital de R$ 4 bi. O balanço forte (caixa líquido, 0,4x) banca a remuneração."}], "veredito": {"tom": "positivo", "resumo": "Trimestre sólido: base de clientes recorde, pós-pago e fibra crescendo com rentabilidade (margem EBITDA 40,2%) e lucro +19,2% YoY. A consolidação da FiBrasil pesa no resultado financeiro, mas a alavancagem segue baixa (0,4x) e a política de remunerar ≥100% do lucro reforça a tese de dividendos."}, "fontes": [{"label": "Apresentação de Resultados 1T26 — Telefônica Brasil RI", "url": "https://api.mziq.com/mzfilemanager/v2/d/24165f81-24d6-4648-bf9f-66712905d5a2/10197118-fa36-7b1a-0863-a2d95945ea83?origin=2"}, {"label": "Telefônica Brasil RI", "url": "https://ri.telefonica.com.br/"}]}};
+  const sel = document.getElementById('co'); if(!sel) return;
+  const $ = id => document.getElementById(id);
+
+  const dec=(v,n=1)=>(v==null||isNaN(v))?'—':v.toFixed(n).replace('.',',');
+  const fmtMi=v=>{ if(v==null||isNaN(v))return '—'; const a=Math.abs(v);
+    return a>=1000 ? 'R$ '+dec(v/1000,2)+' bi' : 'R$ '+dec(v,0)+' mi'; };
+  const chg=(c,p)=>(p==null||p<=0||isNaN(p)||c==null)?null:(c/p-1)*100;
+  // comparativos por rótulo de trimestre (robusto p/ série curta ou com lacunas)
+  const yoyP=p=>p.slice(0,2)+String(+p.slice(2)-1).padStart(2,'0');           // 1T26 -> 1T25
+  const qoqP=p=>{const t=+p[0],y=+p.slice(2);                                  // 1T26 -> 4T25
+    return t===1?('4T'+String(y-1).padStart(2,'0')):((t-1)+'T'+p.slice(2));};
+
+  function chip(v,unit){
+    if(v==null||isNaN(v)) return '<span class="chip flat">—</span>';
+    const flat=Math.abs(v)<0.05, up=v>0, arr=flat?'→':(up?'▲':'▼');
+    const cls=flat?'flat':(up?'up':'down'), u=unit==='pp'?' p.p.':'%';
+    return `<span class="chip ${cls}">${arr} ${(up?'+':'')}${dec(v,1)}${u}</span>`;
+  }
+
+  // série curta (ex.: review via release, só YoY): barras por trimestre
+  function chartBars(vals, labels, fmt, zeroBase){
+    const W=400,H=212,padL=10,padR=12,padT=22,padB=26, n=vals.length;
+    const plotW=W-padL-padR, plotH=H-padT-padB;
+    let mn=Math.min(...vals), mx=Math.max(...vals);
+    if(zeroBase||mn>0){ mn=Math.min(0,mn); } mx=Math.max(0,mx);
+    const span=(mx-mn)||1, y=v=>padT+plotH*(mx-v)/span, yz=y(0);
+    const slot=plotW/n, bw=Math.min(slot*0.5,64);
+    let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="comparativo por trimestre">`;
+    s+=`<line class="gl" x1="${padL}" y1="${yz.toFixed(1)}" x2="${W-padR}" y2="${yz.toFixed(1)}"/>`;
+    for(let i=0;i<n;i++){ const xc=padL+slot*i+slot/2, v=vals[i], yv=y(v);
+      const top=Math.min(yv,yz), h=Math.max(Math.abs(yv-yz),1.5), last=i===n-1;
+      const fill=last?'var(--accent)':(v<0?'var(--down)':'var(--muted)');
+      s+=`<rect x="${(xc-bw/2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="3" fill="${fill}" opacity="${last?'1':'.5'}"/>`;
+      s+=`<text class="last-lbl" x="${xc.toFixed(1)}" y="${(top-6).toFixed(1)}" text-anchor="middle">${fmt(v)}</text>`;
+      s+=`<text class="ax" x="${xc.toFixed(1)}" y="${(H-8).toFixed(1)}" text-anchor="middle">${labels[i]}</text>`;
+    }
+    s+=`</svg>`; return s;
+  }
+  // gráfico de série completa: área + linha, último ponto destacado, ticks por ano
+  function chartArea(vals, labels, fmt, zeroBase){
+    if(vals.length<=6) return chartBars(vals, labels, fmt, zeroBase);
+    const W=400,H=212,padL=10,padR=12,padT=18,padB=26;
+    const plotW=W-padL-padR, plotH=H-padT-padB, n=vals.length;
+    let mn=Math.min(...vals), mx=Math.max(...vals);
+    if(zeroBase){ mn=Math.min(0,mn); mx=Math.max(0,mx); }
+    const span=(mx-mn)||1; const x=i=>padL+plotW*i/(n-1); const y=v=>padT+plotH*(mx-v)/span;
+    let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="série histórica">`;
+    if(zeroBase && mn<0){ const yz=y(0); s+=`<line class="gl" x1="${padL}" y1="${yz.toFixed(1)}" x2="${W-padR}" y2="${yz.toFixed(1)}"/>`; }
+    const pts=vals.map((v,i)=>`${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+    const baseY=zeroBase&&mn<0?y(0):(padT+plotH);
+    s+=`<polygon points="${padL},${baseY.toFixed(1)} ${pts} ${(W-padR)},${baseY.toFixed(1)}" fill="rgba(79,195,224,.10)"/>`;
+    s+=`<polyline points="${pts}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>`;
+    // ticks de ano (todo 1T) — rótulo de 2 dígitos
+    for(let i=0;i<n;i++){ if(String(labels[i]).slice(0,2)==='1T'){
+      s+=`<text class="ax" x="${x(i).toFixed(1)}" y="${(H-8).toFixed(1)}" text-anchor="middle">${labels[i].slice(2)}</text>`; } }
+    const li=n-1, lv=vals[li];
+    s+=`<circle cx="${x(li).toFixed(1)}" cy="${y(lv).toFixed(1)}" r="3.4" fill="var(--accent)" stroke="var(--bg)" stroke-width="1.5"/>`;
+    s+=`<text class="last-lbl" x="${(W-padR).toFixed(1)}" y="${(padT-5).toFixed(1)}" text-anchor="end">${fmt(lv)}</text>`;
+    s+=`</svg>`; return s;
+  }
+  const card=(t,m,svg)=>`<section class="card"><div class="card-h"><h2>${t}</h2><span class="m">${m}</span></div><div class="chart-box">${svg}</div></section>`;
+
+  function render(tk){
+    const c=DATA[tk]; if(!c) return;
+    const qs=c.quarters||[], L=qs.map(q=>q.periodo), N=qs.length;
+    const F=k=>qs.map(q=>(q.financ||{})[k]);
+    const rec=F('receita_liq'), ebt=F('ebitda'), mg=F('margem_ebitda'), ll=F('lucro_liquido');
+    const byP={}; qs.forEach(q=>byP[q.periodo]=q.financ||{});
+    const cp=(qs[N-1]||{}).periodo||'';
+    const fc=byP[cp]||{}, fy=byP[yoyP(cp)]||{}, fq=byP[qoqP(cp)]||{};
+
+    const brDate = s => s ? s.split('-').reverse().join('/') : '';
+    $('h-co').innerHTML = (c.nome||tk)+' · <em>'+(c.ref||'')+'</em>';
+    $('h-sub').innerHTML = `<span>${c.setor||''}</span>`
+      + (c.data_divulgacao?`<span class="disc">Resultado divulgado em <b>${brDate(c.data_divulgacao)}</b>${c.divulgacao_nota?' ('+c.divulgacao_nota+')':''}</span>`:'')
+      + (c.ref_data?`<span>data-base <b>${brDate(c.ref_data)}</b></span>`:'')
+      + `<span>série <b>${L[0]}–${L[N-1]}</b> (${N} tri)</span>`;
+
+    const vd=c.veredito||{}, tom=vd.tom||'misto';
+    $('verdict').className='verdict t-'+tom;
+    $('verdict').innerHTML = vd.resumo ? `<span class="badge">Veredito · ${tom}</span><p>${vd.resumo}</p>` : '';
+
+    const mgd=(a,b)=>(a==null||b==null)?null:(a-b);
+    const KPI=(lbl,val,d1,d2,u1,foot)=>`<div class="kpi"><div class="lbl">${lbl}</div><div class="val">${val}</div>
+      <div class="deltas"><span class="dl"><span class="k">YoY</span>${chip(d1,u1)}</span><span class="dl"><span class="k">QoQ</span>${chip(d2,u1)}</span></div>
+      ${foot?`<div class="foot">${foot}</div>`:''}</div>`;
+    $('kpis').innerHTML =
+        KPI('Receita líquida', fmtMi(fc.receita_liq), chg(fc.receita_liq,fy.receita_liq), chg(fc.receita_liq,fq.receita_liq), null, c.receita_nota||'receita operacional líquida')
+      + KPI('EBITDA', fmtMi(fc.ebitda), chg(fc.ebitda,fy.ebitda), chg(fc.ebitda,fq.ebitda), null, 'margem '+dec(fc.margem_ebitda,1)+'%')
+      + KPI('Margem EBITDA', dec(fc.margem_ebitda,1)+'%', mgd(fc.margem_ebitda,fy.margem_ebitda), mgd(fc.margem_ebitda,fq.margem_ebitda), 'pp', 'sobre '+(c.margem_base||'a receita líquida'))
+      + KPI('Lucro líquido', fmtMi(fc.lucro_liquido), chg(fc.lucro_liquido,fy.lucro_liquido), chg(fc.lucro_liquido,fq.lucro_liquido), null, 'do período');
+
+    $('charts').innerHTML =
+        card('Receita líquida', 'R$ mi', chartArea(rec,L,fmtMi,false))
+      + card('Margem EBITDA', '%', chartArea(mg,L,v=>dec(v,1)+'%',false))
+      + card('Lucro líquido', 'R$ mi', chartArea(ll,L,fmtMi,true));
+
+    const ts=c.trends||[];
+    $('trends').innerHTML = ts.length ? ts.map(t=>`<div class="trend t-${t.tom||'neu'}">
+      <div class="trend-h"><span class="dot"></span><span class="t">${t.titulo||''}</span></div><p>${t.texto||''}</p></div>`).join('')
+      : '<div class="empty">Sem leitura curada.</div>';
+
+    const ops=c.operacional||[];
+    $('oper').innerHTML = ops.length ? ops.map(o=>`<div class="ocell">
+      <div class="ol">${o.label}</div>
+      <div class="ov">${o.valor||'—'}<span class="un">${o.unidade||''}</span></div>
+      <div class="od"><span class="dl"><span class="k">YoY</span>${chip(o.yoy)}</span><span class="dl"><span class="k">QoQ</span>${chip(o.qoq)}</span></div>
+      ${o.nota?`<div class="on">${o.nota}</div>`:''}</div>`).join('')
+      : '<div class="empty">Sem KPIs operacionais.</div>';
+
+    const fs=c.fontes||[];
+    $('srcs').innerHTML = fs.length ? 'Fontes: '+fs.map(f=>f.url?`<a href="${f.url}" target="_blank" rel="noopener">${f.label} ↗</a>`:f.label).join('  ·  ') : '';
+  }
+
+  const def="RENT3";
+  if([...sel.options].some(o=>o.value===def)) sel.value=def;
+  render(sel.value);
+  sel.addEventListener('change', e=>render(e.target.value));
+})();</script>
+</body></html>
